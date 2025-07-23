@@ -14,10 +14,6 @@
         <loc>https://website.jingxiqiu.com/blog/</loc>
     </url>
     <url>
-        <loc>https://website.jingxiqiu.com/blog/hello/</loc>
-        <lastmod>2093-02-16</lastmod>
-    </url>
-    <url>
         <loc>https://website.jingxiqiu.com/blog/page/1/</loc>
     </url>
     <url>
@@ -38,6 +34,9 @@
         <loc>https://website.jingxiqiu.com/projects/cool-project/</loc>
     </url>
     <url>
+        <loc>https://website.jingxiqiu.com/projects/draw-cat/</loc>
+    </url>
+    <url>
         <loc>https://website.jingxiqiu.com/projects/ev-analysis-wa/</loc>
     </url>
     <url>
@@ -48,6 +47,12 @@
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/projects/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/projects/sentiment-analysis-in-news-media/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/projects/sentiment-influence-on-stock-market/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/projects/us-car-accident-analysis/</loc>
@@ -65,10 +70,13 @@
         <loc>https://website.jingxiqiu.com/tags/course-project/</loc>
     </url>
     <url>
-        <loc>https://website.jingxiqiu.com/tags/data-analysis/</loc>
+        <loc>https://website.jingxiqiu.com/tags/crawler/</loc>
     </url>
     <url>
-        <loc>https://website.jingxiqiu.com/tags/demo/</loc>
+        <loc>https://website.jingxiqiu.com/tags/cv/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/tags/data-analysis/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/tags/deployment/</loc>
@@ -77,10 +85,16 @@
         <loc>https://website.jingxiqiu.com/tags/finetune/</loc>
     </url>
     <url>
+        <loc>https://website.jingxiqiu.com/tags/gan/</loc>
+    </url>
+    <url>
         <loc>https://website.jingxiqiu.com/tags/llm/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/tags/meta/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/tags/nlp/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/tags/package-management/</loc>
@@ -90,6 +104,9 @@
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/tags/poetry/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/tags/sentiment-analysis/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/tags/static-blog/</loc>
@@ -110,10 +127,6 @@
         <loc>https://website.jingxiqiu.com/zh/blog/</loc>
     </url>
     <url>
-        <loc>https://website.jingxiqiu.com/zh/blog/hello/</loc>
-        <lastmod>2093-02-16</lastmod>
-    </url>
-    <url>
         <loc>https://website.jingxiqiu.com/zh/blog/page/1/</loc>
     </url>
     <url>
@@ -131,6 +144,9 @@
         <loc>https://website.jingxiqiu.com/zh/projects/cool-project/</loc>
     </url>
     <url>
+        <loc>https://website.jingxiqiu.com/zh/projects/draw-cat/</loc>
+    </url>
+    <url>
         <loc>https://website.jingxiqiu.com/zh/projects/ev-analysis-wa/</loc>
     </url>
     <url>
@@ -141,6 +157,9 @@
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/zh/projects/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/zh/projects/sentiment-influence-on-stock-market/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/zh/projects/us-car-accident-analysis/</loc>
@@ -155,7 +174,10 @@
         <loc>https://website.jingxiqiu.com/zh/tags/bu-shu/</loc>
     </url>
     <url>
-        <loc>https://website.jingxiqiu.com/zh/tags/demo/</loc>
+        <loc>https://website.jingxiqiu.com/zh/tags/gan/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/zh/tags/ji-suan-ji-shi-jue/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/zh/tags/jing-tai-bo-ke/</loc>
@@ -179,10 +201,16 @@
         <loc>https://website.jingxiqiu.com/zh/tags/poetry/</loc>
     </url>
     <url>
+        <loc>https://website.jingxiqiu.com/zh/tags/qing-gan-fen-xi/</loc>
+    </url>
+    <url>
         <loc>https://website.jingxiqiu.com/zh/tags/shu-ju-fen-xi/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/zh/tags/wei-diao/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/zh/tags/zi-ran-yu-yan-chu-li/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/zh/tags/zola/</loc>
