@@ -37,6 +37,15 @@
         <loc>https://website.jingxiqiu.com/projects/draw-cat/</loc>
     </url>
     <url>
+        <loc>https://website.jingxiqiu.com/projects/ev-analysis-wa/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/projects/finance-llm-agent/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/projects/llama-finetune/</loc>
+    </url>
+    <url>
         <loc>https://website.jingxiqiu.com/projects/page/1/</loc>
     </url>
     <url>
@@ -46,10 +55,16 @@
         <loc>https://website.jingxiqiu.com/projects/sentiment-influence-on-stock-market/</loc>
     </url>
     <url>
+        <loc>https://website.jingxiqiu.com/projects/us-car-accident-analysis/</loc>
+    </url>
+    <url>
         <loc>https://website.jingxiqiu.com/resume/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/tags/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/tags/agent/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/tags/course-project/</loc>
@@ -73,6 +88,9 @@
         <loc>https://website.jingxiqiu.com/tags/gan/</loc>
     </url>
     <url>
+        <loc>https://website.jingxiqiu.com/tags/llm/</loc>
+    </url>
+    <url>
         <loc>https://website.jingxiqiu.com/tags/meta/</loc>
     </url>
     <url>
@@ -80,6 +98,9 @@
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/tags/package-management/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/tags/peft/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/tags/poetry/</loc>
@@ -126,13 +147,28 @@
         <loc>https://website.jingxiqiu.com/zh/projects/draw-cat/</loc>
     </url>
     <url>
+        <loc>https://website.jingxiqiu.com/zh/projects/ev-analysis-wa/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/zh/projects/finance-llm-agent/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/zh/projects/llama-finetune/</loc>
+    </url>
+    <url>
         <loc>https://website.jingxiqiu.com/zh/projects/page/1/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/zh/projects/sentiment-influence-on-stock-market/</loc>
     </url>
     <url>
+        <loc>https://website.jingxiqiu.com/zh/projects/us-car-accident-analysis/</loc>
+    </url>
+    <url>
         <loc>https://website.jingxiqiu.com/zh/tags/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/zh/tags/agent/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/zh/tags/bu-shu/</loc>
@@ -150,10 +186,16 @@
         <loc>https://website.jingxiqiu.com/zh/tags/ke-cheng-xiang-mu/</loc>
     </url>
     <url>
+        <loc>https://website.jingxiqiu.com/zh/tags/llm/</loc>
+    </url>
+    <url>
         <loc>https://website.jingxiqiu.com/zh/tags/meta/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/zh/tags/package-management/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/zh/tags/peft/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/zh/tags/poetry/</loc>
@@ -163,6 +205,9 @@
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/zh/tags/shu-ju-fen-xi/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/zh/tags/wei-diao/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/zh/tags/zi-ran-yu-yan-chu-li/</loc>
