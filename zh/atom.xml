@@ -31,6 +31,83 @@
         <id>https://website.jingxiqiu.com/zh/blog/zola-migration/</id>
         
             <content type="html">&lt;p&gt;迁移原因、操作脚本、常见报错修复……&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;cong-notionnextqian-yi-dao-zola&quot;&gt;从NotionNext迁移到Zola&lt;&#x2F;h1&gt;
+&lt;p&gt;最近把个人网站从NotionNext迁移到了Zola，分享一点个人看法。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;qian-yao&quot;&gt;前要&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;notionnextshi-yong-ti-yan&quot;&gt;NotionNext使用体验&lt;&#x2F;h3&gt;
+&lt;p&gt;此前我使用NotionNext托管个人博客，Notion确实是一个非常好的文本编辑软件，编写起文章来非常流畅，而且有一个软件可以随时随地点开即写并且全平台同步，只要保存设置为发布就能在前端显示新的文章。&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;qian-yi-yuan-yin&quot;&gt;迁移原因&lt;&#x2F;h3&gt;
+&lt;p&gt;当文章多起来后，NotionNext对于文章的管理对我个人而言就不是那么得心应手了，这将导致Notion数据库庞大且难以维护。同时考虑到我也有前端开发经验，在Zola等静态网站生成器中使用css对于前端进行管理相较于NotionNext在文本编辑器中进行修改更为直观便捷。考虑到对文章管理，自定义内容把控，多语言支持，我决定把博客托管软件迁移到Zola。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;qian-yi-guo-cheng&quot;&gt;迁移过程&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;zolaan-zhuang&quot;&gt;Zola安装&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;documentation&#x2F;getting-started&#x2F;installation&#x2F;&quot;&gt;Zola的官方文档&lt;&#x2F;a&gt;写的挺清晰明了的，对于本地Zola的开发环境基本只需要一条指令便能一键安装。唯一要注意的是如果要支持中文&#x2F;日文的话，需要额外打包二进制索引，否则站内搜索功能对该语言将不可用。本地安装和github action编译含中文的Zola可以见文章：&lt;a href=&quot;#&quot;&gt;让Zola支持中文索引&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;我的配置是本地windows开发，Github Page部署。博客的代码在仓库A，然后通过action部署到公开的仓库B，然后推送到github Page上。
+
+
+&lt;noscript&gt;
+    &lt;strong&gt;⚠️ JavaScript is required to render the diagram.&lt;&#x2F;strong&gt;
+&lt;&#x2F;noscript&gt;
+&lt;pre class=&quot;mermaid invertible-image&quot;&gt;
+    flowchart TD
+    %% ---- 节点 ----
+    subgraph Local[&quot;本地开发环境&quot;]
+        W[Windows 本地开发]
+    end
+
+    subgraph GitHub[&quot;GitHub&quot;]
+        A[Repo A（博客源代码）]
+        GA[GitHub Actions（CI&#x2F;CD）]
+        B[Repo B（静态站点文件）]
+        GP[GitHub Pages（线上托管）]
+    end
+
+    U[访客 &#x2F; 浏览器]
+
+    %% ---- 连线 ----
+    W  --&gt;|git push| A
+    A  --&gt;|触发 workflow| GA
+    GA --&gt;|build 静态文件 → push| B
+    B  --&gt;|gh-pages 分支| GP
+    U  --&gt;|HTTPS 请求| GP
+
+    %% ---- 样式（可选）----
+    classDef local  fill:#e5e5e5,stroke:#888,stroke-width:1px,rx:6,ry:6;
+    classDef repo   fill:#fef6e4,stroke:#a9a9a9,stroke-width:1px,rx:6,ry:6;
+    classDef action fill:#cbf3f0,stroke:#0096c7,stroke-width:1px,rx:6,ry:6;
+    classDef page   fill:#ffd6a5,stroke:#ff8800,stroke-width:1px,rx:6,ry:6;
+
+    class W local;
+    class A,B repo;
+    class GA action;
+    class GP page;
+
+    linkStyle default stroke-width:2px;
+&lt;&#x2F;pre&gt;
+&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;wen-zhang-jie-gou-shuang-yu-zhi-chi&quot;&gt;文章结构 - 双语支持&lt;&#x2F;h3&gt;
+&lt;p&gt;正常情况下，博客可以直接用以下结构：&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;text&quot; class=&quot;language-text z-code&quot;&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;content&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;└── blog&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    ├── 2025-07-01-zola-migration.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    ├── 2025-06-20-new-feature.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    └── 2025-05-10-performance-tips.md
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;但是如果需要双语则需要创建对应的多语言文件，比如我站点的主语言设置为英文(en)，而我想其支持中文(zh)，我需要创建一个&lt;code&gt;index.zh.md&lt;&#x2F;code&gt;文件来让zola获取对应的中文版本。我选择的是这种结构：&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;text&quot; class=&quot;language-text z-code&quot;&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;content&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;└── blog&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    ├── 2025-07-01-zola-migration&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    │   ├── index.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    │   └── index.zh.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    ├── 2025-06-20-new-feature&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    │   ├── index.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    │   └── index.zh.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    └── 2025-05-10-performance-tips&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;        ├── index.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;        └── index.zh.md
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;这样Zola能识别到2025-07-01-zola-migration下包含en（主语言）和zh两种语言，缺失不会导致报错，但是在对应语言下不会显示这篇文章。&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;wen-zhang-qian-yi&quot;&gt;文章迁移&lt;&#x2F;h3&gt;
+&lt;p&gt;目前把文章从NotionNext迁移过来的方法，还是手动把文章通过markdown导出，然后在zola里手动修改。后面可能考虑Notion编辑器到markdown的自动化流程。&lt;&#x2F;p&gt;
 </content>
         <summary type="html">记录把个人站从 NotionNext 迁移到 Zola 的完整流程</summary>
         </entry><entry xml:lang="zh">

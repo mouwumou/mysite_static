@@ -31,7 +31,84 @@
         <link rel="alternate" href="https://website.jingxiqiu.com/blog/zola-migration/" type="text/html"/>
         <id>https://website.jingxiqiu.com/blog/zola-migration/</id>
         
-            <content type="html">&lt;p&gt;Reasons for migration, operation scripts, and common error fixes…&lt;&#x2F;p&gt;
+            <content type="html">&lt;p&gt;Reasons for Migration, Operation Scripts, Common Error Fixes…&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;migrating-from-notionnext-to-zola&quot;&gt;Migrating from NotionNext to Zola&lt;&#x2F;h1&gt;
+&lt;p&gt;Recently, I migrated my personal website from NotionNext to Zola and would like to share some thoughts.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;experience-with-notionnext&quot;&gt;Experience with NotionNext&lt;&#x2F;h3&gt;
+&lt;p&gt;Previously, I used NotionNext to host my personal blog. Notion is indeed an excellent text editing tool—writing articles is smooth, and having a cross-platform app for instant writing and syncing is very convenient. As long as you set an article to “published,” it appears on the frontend.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;reasons-for-migration&quot;&gt;Reasons for Migration&lt;&#x2F;h3&gt;
+&lt;p&gt;As the number of articles grew, managing them with NotionNext became less efficient for me. The Notion database became large and difficult to maintain. Since I have frontend development experience, managing the frontend with CSS in static site generators like Zola is more intuitive and convenient than editing in Notion. For better article management, content customization, and multilingual support, I decided to migrate my blog to Zola.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;migration-process&quot;&gt;Migration Process&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;installing-zola&quot;&gt;Installing Zola&lt;&#x2F;h3&gt;
+&lt;p&gt;The &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;documentation&#x2F;getting-started&#x2F;installation&#x2F;&quot;&gt;official Zola documentation&lt;&#x2F;a&gt; is clear and straightforward. Setting up a local Zola development environment usually takes just one command. Note: If you need support for Chinese&#x2F;Japanese, you must build a custom binary index; otherwise, site search won’t work for those languages. For local installation and GitHub Actions compilation with Chinese support, see my article: &lt;a href=&quot;#&quot;&gt;Enable Chinese Indexing in Zola&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;My setup is local Windows development with deployment on GitHub Pages. The blog code is in repository A, deployed via GitHub Actions to public repository B, and then pushed to GitHub Pages.
+
+
+&lt;noscript&gt;
+    &lt;strong&gt;⚠️ JavaScript is required to render the diagram.&lt;&#x2F;strong&gt;
+&lt;&#x2F;noscript&gt;
+&lt;pre class=&quot;mermaid invertible-image&quot;&gt;
+    flowchart TD
+    %% ---- Nodes ----
+    subgraph Local[&quot;Local Development&quot;]
+        W[Windows Local Development]
+    end
+
+    subgraph GitHub[&quot;GitHub&quot;]
+        A[Repo A（Blog Source Code）]
+        GA[GitHub Actions（CI&#x2F;CD）]
+        B[Repo B（Static Site Files）]
+        GP[GitHub Pages（Online Hosting）]
+    end
+
+    U[Visitor &#x2F; Browser]
+
+    %% ---- Connections ----
+    W  --&gt;|git push| A
+    A  --&gt;|trigger workflow| GA
+    GA --&gt;|build static files → push| B
+    B  --&gt;|gh-pages branch| GP
+    U  --&gt;|HTTPS request| GP
+
+    %% ---- Styles (optional) ----
+    classDef local  fill:#e5e5e5,stroke:#888,stroke-width:1px,rx:6,ry:6;
+    classDef repo   fill:#fef6e4,stroke:#a9a9a9,stroke-width:1px,rx:6,ry:6;
+    classDef action fill:#cbf3f0,stroke:#0096c7,stroke-width:1px,rx:6,ry:6;
+    classDef page   fill:#ffd6a5,stroke:#ff8800,stroke-width:1px,rx:6,ry:6;
+
+    class W local;
+    class A,B repo;
+    class GA action;
+    class GP page;
+
+    linkStyle default stroke-width:2px;
+&lt;&#x2F;pre&gt;
+&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;article-structure-multilingual-support&quot;&gt;Article Structure - Multilingual Support&lt;&#x2F;h3&gt;
+&lt;p&gt;Normally, your blog can use the following structure:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;text&quot; class=&quot;language-text z-code&quot;&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;content&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;└── blog&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    ├── 2025-07-01-zola-migration.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    ├── 2025-06-20-new-feature.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    └── 2025-05-10-performance-tips.md
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;However, for multilingual support, you need to create corresponding language files. For example, if your site’s main language is English (&lt;code&gt;en&lt;&#x2F;code&gt;) and you want to support Chinese (&lt;code&gt;zh&lt;&#x2F;code&gt;), create an &lt;code&gt;index.zh.md&lt;&#x2F;code&gt; file for the Chinese version. My structure looks like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;text&quot; class=&quot;language-text z-code&quot;&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;content&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;└── blog&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    ├── 2025-07-01-zola-migration&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    │   ├── index.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    │   └── index.zh.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    ├── 2025-06-20-new-feature&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    │   ├── index.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    │   └── index.zh.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    └── 2025-05-10-performance-tips&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;        ├── index.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;        └── index.zh.md
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This way, Zola recognizes both English (default) and Chinese versions under &lt;code&gt;2025-07-01-zola-migration&lt;&#x2F;code&gt;. If a language version is missing, it won’t cause errors, but the article won’t appear in that language.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;article-migration&quot;&gt;Article Migration&lt;&#x2F;h3&gt;
+&lt;p&gt;Currently, I manually export articles from NotionNext as markdown and then edit them in Zola. In the future, I may consider automating the process from Notion editor to markdown.&lt;&#x2F;p&gt;
 </content>
         <summary type="html">Documenting the complete process of migrating the personal site from NotionNext to Zola</summary>
         </entry><entry xml:lang="en">
