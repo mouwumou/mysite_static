@@ -264,5 +264,197 @@ tags: Poetry, Python, Learning --&gt;
 &lt;p&gt;The primary dependencies are always installed. For example, if you have groups [main], [dev], [docs] and run &lt;code&gt;poetry install --with docs --sync&lt;&#x2F;code&gt;, then [main] and [docs] will be installed while [dev] will be omitted.&lt;&#x2F;p&gt;
 </content>
         <summary type="html">Poetry installation and usage</summary>
+        </entry><entry xml:lang="en">
+        <title>LLM Scaling Laws Paper Excerpt - Scaling Laws for Neural Language Models</title>
+        <published>2024-03-20T00:00:00+00:00</published>
+        <updated>2024-03-20T00:00:00+00:00</updated>
+        <author>
+            <name>Jingxi Qiu</name>
+        </author>
+        <link rel="alternate" href="https://website.jingxiqiu.com/blog/scaling-law/" type="text/html"/>
+        <id>https://website.jingxiqiu.com/blog/scaling-law/</id>
+        
+            <content type="html">&lt;h1 id=&quot;llm-scaling-laws-paper-excerpt-scaling-laws-for-neural-language-models&quot;&gt;LLM Scaling Laws Paper Excerpt - Scaling Laws for Neural Language Models&lt;&#x2F;h1&gt;
+&lt;p&gt;type: Post
+status: Published
+date: 2024&#x2F;03&#x2F;20
+tags: AI, LLM, NLP, 论文摘录
+category: 技术分享&lt;&#x2F;p&gt;
+&lt;aside&gt;
+✋ Many people believe that the performance of large models is related to the model&#x27;s structure, size, training compute, and dataset size. However, how exactly do these factors influence the final performance of a large model? Understanding this can help in better deciding where to invest resources to train the required models.
+&lt;&#x2F;aside&gt;
+&lt;h1 id=&quot;background-and-content&quot;&gt;Background and Content&lt;&#x2F;h1&gt;
+&lt;p&gt;In 2020, OpenAI released the paper “Scaling Laws for Neural Language Models,” exploring Scaling Laws. This paper discusses the relationship between the training loss of large models based on Transformers and the model parameter size (N), dataset size (D), and computational volume (C).&lt;&#x2F;p&gt;
+&lt;p&gt;In April 2022, Google DeepMind revisited Scaling Laws in their article “Training Compute-Optimal Large Language Models.” They pointed out that current large models are significantly under-trained. By using four times the data (compared to the 280B parameter Gopher) to train the 70B parameter Chinchilla, they achieved better results (SOTA average accuracy of 67.5% on the MMLU benchmark, a 7% increase).&lt;&#x2F;p&gt;
+&lt;p&gt;However, in February 2023, a blog titled “Chinchilla’s Death” by &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;espadrine.github.io&#x2F;&quot;&gt;&lt;em&gt;Thaddée Tyl&lt;&#x2F;em&gt;&lt;&#x2F;a&gt; argued that with sufficient training time, small models can outperform large models.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;paper&quot;&gt;Paper&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;scaling-laws-for-neural-language-models&quot;&gt;Scaling Laws for Neural Language Models&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;key-findings&quot;&gt;Key Findings&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Model performance improves with the increase in model size (N), dataset size (D), and compute (C), and is weakly correlated with the model’s shape (depth and width) and the number of self-attention heads.&lt;&#x2F;li&gt;
+&lt;li&gt;When other factors are not limited, there is a power-law relationship between model size (N), dataset size (D), compute (C), and performance.&lt;&#x2F;li&gt;
+&lt;li&gt;Expanding both model size (N) and dataset size (D) simultaneously can improve model performance. However, the study suggests that when the model size increases eightfold, the dataset size only needs to increase fivefold, and this will not incur a performance penalty.&lt;&#x2F;li&gt;
+&lt;li&gt;Because the training curve follows a power-law relationship, the loss is independent of model size, allowing us to roughly predict the loss for subsequent training.&lt;&#x2F;li&gt;
+&lt;li&gt;There is a penalty (greater error) when transferring to a dataset different from the training set, but this penalty is constant, meaning other improvements are consistent.&lt;&#x2F;li&gt;
+&lt;li&gt;Large models have higher sample efficiency compared to smaller models, requiring less training (Figure 2) and less data (Figure 4) to achieve the same level of performance.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;website.jingxiqiu.com&#x2F;blog&#x2F;scaling-law&#x2F;Untitled.png&quot; alt=&quot;Untitled&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;website.jingxiqiu.com&#x2F;blog&#x2F;scaling-law&#x2F;Untitled%201.png&quot; alt=&quot;Untitled&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Convergence is inefficient. When the compute (C) is fixed, it is possible to stop training before the model fully converges to achieve optimal performance (Figure 3). The paper provides a reference relationship as follows: $D\sim C^{0.27}$&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;website.jingxiqiu.com&#x2F;blog&#x2F;scaling-law&#x2F;Untitled%202.png&quot; alt=&quot;This figure illustrates the contributions of different factors under the same compute budget (C). Firstly, model size contributes the most, followed by data (achieved through larger batch sizes and reduced data reuse), while increasing the number of serial steps (more training iterations) does not significantly help.&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This figure illustrates the contributions of different factors under the same compute budget (C). Firstly, model size contributes the most, followed by data (achieved through larger batch sizes and reduced data reuse), while increasing the number of serial steps (more training iterations) does not significantly help.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;The ideal batch size for training should be proportional to the power of the training data size and can be further determined using the gradient noise scale.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;scaling-law-summary&quot;&gt;Scaling Law Summary&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;Parameters：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;non-embedding parameters $N$&lt;&#x2F;p&gt;
+&lt;p&gt;the dataset size $D$&lt;&#x2F;p&gt;
+&lt;p&gt;optimally allocated compute budget $C_{min}$&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Parameter Definition&lt;&#x2F;strong&gt;
+&lt;ul&gt;
+&lt;li&gt;$L$ – the cross entropy loss in nats. Typically it will be averaged over the tokens in a context, but in some cases we report the loss for specific tokens within the context.&lt;&#x2F;li&gt;
+&lt;li&gt;$N$ – the number of model parameters, excluding all vocabulary and positional embeddings&lt;&#x2F;li&gt;
+&lt;li&gt;$C$ $≈ 6NBS$ – an estimate of the total non-embedding training compute, where $B$ is the batch size, and $S$ is the number of training steps (ie parameter updates). We quote numerical values in PF-days, where one $\text{PF-day}= 10^{15} × 24 × 3600 = 8.64 × 10^{19}$ floating point operations.&lt;&#x2F;li&gt;
+&lt;li&gt;$D$ – the dataset size in tokens&lt;&#x2F;li&gt;
+&lt;li&gt;$B_{crit}$ – the critical batch size [MKAT18], defined and discussed in Section 5.1. Training at the critical batch size provides a roughly optimal compromise between time and compute efficiency.&lt;&#x2F;li&gt;
+&lt;li&gt;$C_{min}$ – an estimate of the minimum amount of non-embedding compute to reach a given value of the loss. This is the training compute that would be used if the model were trained at a batch size much less than the critical batch size.&lt;&#x2F;li&gt;
+&lt;li&gt;$S_{min}$ – an estimate of the minimal number of training steps needed to reach a given value of the loss. This is also the number of training steps that would be used if the model were trained at a batch size much greater than the critical batch size.&lt;&#x2F;li&gt;
+&lt;li&gt;$\alpha_X$ – power-law exponents for the scaling of the loss as $L(X) ∝ 1&#x2F;X^{α_X}$ where X can be any of $N, D, C, S, B, C^{min}$.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;When the other two factors are not limited, the test loss can be predicted using the following formula:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;N is limited&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;$$
+\begin{equation} L(N)=(N_c&#x2F;N)^{\alpha_N} \end{equation}&lt;br &#x2F;&gt;
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\alpha_N \sim 0.076,N_c \sim 8.8 \times 10^{13} \text{(non-embedding parameters)}
+$$&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;D is limited（with early stopping)&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;$$
+\begin{equation} L(D)=(D_c&#x2F;D)^{\alpha_D} \end{equation}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\alpha_D \sim 0.095, D_c \sim 5.4 \times 10^{13}\text{(tokens)}
+$$&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;C is limited&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;$$
+\begin{equation}L(C_{min})=(C^{min}&lt;em&gt;c&#x2F;C&lt;&#x2F;em&gt;{min})^{\alpha_{min}} \end{equation}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\alpha_C^{min} \sim 0.050, C^{min}_c \sim 3.1 \times 10^8 \text{(PF-days)}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Formula Meaning:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;In the above formulas, $\alpha_N, \alpha_D, \alpha_C^{min}$ indicate the power law exponents that describe the performance improvement when increasing $N,D,C_{min}$.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, if we double the number of model parameters, the model loss will decrease by a factor of $2_{-\alpha_N}\approx 0.95$, meaning the loss will be 0.95 times the previous value. The exact numbers for $N_C,D_C,C_C^{min}$ are based on vocabulary size and tokenization, thus only representing an order of magnitude relationship rather than precise values.&lt;&#x2F;p&gt;
+&lt;p&gt;Additionally, the paper discusses the relationship between batch size and loss.&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\begin{equation}B_{crit}(L)=\frac{B_*}{L^{1&#x2F;a_B}} \end{equation}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+B_* \sim 2\cdot10^8 \text{tokens}, \alpha_B\sim0.21
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;Based on the previous formulas (1) and (2), when we increase the model size, we should correspondingly increase the dataset size. It can be calculated as:$D\propto N^{\frac{\alpha_{N}}{\alpha_D}} \sim N^{0.74}$。&lt;&#x2F;p&gt;
+&lt;p&gt;They also derived a combined formula from (1) and (2) to manage the dependencies of N and D and to control overfitting:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\begin{equation}L(N,D)=\left[\left(\frac{N_c}{N}^{\frac{\alpha_N}{\alpha_D}}+\frac{D_c}{D} \right)  \right]^{\alpha_D}\end{equation}
+$$&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The authors speculate that this function can also generate the maximum log-likelihood for other generative tasks.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The training curve can also be derived from the number of training steps, allowing us to determine the optimal number of training steps.&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\begin{equation}L(N,S)=\left(\frac{N_c}{N}\right)^{\alpha{N}}+\left(\frac{S_c}{S_{min}(S)}\right)^{\alpha_S}\end{equation}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$S_c \approx 2.1 \times 10^3,\alpha_S \approx 0.76$
+$S_{min}(S)$ is the minimum possible number of optimization steps (parameter updates) estimated using Equation&lt;&#x2F;p&gt;
+&lt;p&gt;In the case of fixed compute C, the following relationship formula is derived:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\begin{equation}N \propto C^{\alpha^{min}_C &#x2F;\alpha_N}, B \propto C^{\alpha^{min}_C &#x2F;\alpha_B}, S \propto C^{\alpha^{min}_C &#x2F;\alpha_S}, D = B \cdot S\end{equation}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;Here we have:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\begin{equation}\alpha^{min}_C=1&#x2F;(1&#x2F;\alpha_S+1&#x2F;\alpha_B+1&#x2F;\alpha_N)\end{equation}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;So we can get $N \propto C^{0.73}&lt;em&gt;{min}, B \propto C^{0.24}&lt;&#x2F;em&gt;{min},\text{ and }S \propto C^{0.03}_{min}$，here drop out the ideas：&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;When the compute budget C is increased, it should primarily be used to create larger models rather than extending training time or increasing dataset size.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Additionally, as models become larger, they become more sample efficient.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;research-methodology&quot;&gt;Research Methodology&lt;&#x2F;h3&gt;
+&lt;p&gt;The study was conducted using the WebText2 dataset and its extension (2.29 × 10^10 tokens). The tokenization method employed was byte-pair encoding, with a vocabulary size of $n_{vocab}=50257$. The performance metric (Loss) was the cross-entropy loss over a context of 1024 tokens. The primary model used was a decoder-only Transformer, and LSTM along with other types of Transformers were also trained for comparison.&lt;&#x2F;p&gt;
+&lt;p&gt;Unless otherwise specified, the model training utilized the Adam optimizer for $2.5 \times 10^5$ steps with a batch size of 512 and a context of 512 tokens. Due to memory constraints, the largest models were trained using the Adafactor optimizer.&lt;&#x2F;p&gt;
+&lt;p&gt;The learning rate schedule, unless otherwise noted, included a warm-up period of 3000 steps followed by cosine decay to zero.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Model Parameter Calculation Method&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;To calculate the model parameters and compute requirements, the model hyperparameters are defined as follows:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Symbol&lt;&#x2F;th&gt;&lt;th&gt;Description&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;$n_{layer}$&lt;&#x2F;td&gt;&lt;td&gt;Number of layers&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;$d_{model}$&lt;&#x2F;td&gt;&lt;td&gt;Dimension of the residual stream&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;$d_{ff}$&lt;&#x2F;td&gt;&lt;td&gt;Dimension of the intermediate feed-forward layer&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;$d_{attn}$&lt;&#x2F;td&gt;&lt;td&gt;Dimension of the attention output&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;$n_{heads}$&lt;&#x2F;td&gt;&lt;td&gt;Number of attention heads per layer&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;$n_{ctx}$&lt;&#x2F;td&gt;&lt;td&gt;Number of input context tokens (typically 1024)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;$N$ to represent the size of the model parameters, excluding the embedding layers, the calculation for model parameters is as follows:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\begin{aligned} N&amp;amp;\approx 2d_{model}n_{layer}(2d_{attn}+d_{ff}) \ &amp;amp;= 12n_{layer}d^2_{model}\end{aligned}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+d_{attn}=d_{ff}&#x2F;4=d_{model}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;Here, the parameters for the embedding layers $n_{vocab}d_{model}$ and $n_{ctx}d_{model}$ are omitted.&lt;&#x2F;p&gt;
+&lt;p&gt;The compute required for a forward pass, denoted as $C$, is approximately:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+C_{forward} \approx 2N+2n_{layer}n_{ctx}d_{model}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;website.jingxiqiu.com&#x2F;blog&#x2F;scaling-law&#x2F;Untitled%203.png&quot; alt=&quot;Untitled&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;experimental-results&quot;&gt;Experimental Results&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;Experimental Variables:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model Size:&lt;&#x2F;strong&gt; Ranging from 768 non-embedding parameters to 1.5 billion parameters.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Dataset Size:&lt;&#x2F;strong&gt; From 22 million to 23 billion tokens.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Model Shape:&lt;&#x2F;strong&gt; Including variations in depth, width, attention heads, and feed-forward dimensions.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Context Length:&lt;&#x2F;strong&gt; Typically 1024 tokens, but shorter contexts were also tested.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Batch Size:&lt;&#x2F;strong&gt; Typically $2^{19}$, but varied to measure the critical batch size.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;website.jingxiqiu.com&#x2F;blog&#x2F;scaling-law&#x2F;Untitled%204.png&quot; alt=&quot;Untitled&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;website.jingxiqiu.com&#x2F;blog&#x2F;scaling-law&#x2F;Untitled%205.png&quot; alt=&quot;Untitled&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Conclusion:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;When the non-embedding model size $N$ is fixed, the model shape has a minimal impact on performance, with large adjustments affecting performance by only a few percentage points.&lt;&#x2F;li&gt;
+&lt;li&gt;If the embedding parameters are included, model performance shows a significant correlation with the number of layers (left graph). However, if the embedding parameters are excluded, the performance of models with different numbers of layers follows the same trend, except for models with fewer than two layers (right graph).&lt;&#x2F;li&gt;
+&lt;li&gt;The same applies to LSTM models, although LSTM performance is slightly inferior to Transformers.&lt;&#x2F;li&gt;
+&lt;li&gt;The power law theorem formula holds:&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;$$
+\begin{aligned}
+L(N)      &amp;amp;\approx (N_c&#x2F;N)^{\alpha_N} \
+L(D)      &amp;amp;\approx (D_c&#x2F;D)^{\alpha_D} \
+L(C_{min})&amp;amp;\approx (C_{c}^{min}&#x2F;C_{min})^{\alpha_{min}}
+\end{aligned}
+$$&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;can-kao&quot;&gt;参考&lt;&#x2F;h1&gt;
+&lt;p&gt;[1] &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2001.08361.pdf&quot;&gt;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2001.08361.pdf&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;[2] &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2203.15556.pdf&quot;&gt;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2203.15556.pdf&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;[3] &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;espadrine.github.io&#x2F;blog&#x2F;posts&#x2F;chinchilla-s-death.html&quot;&gt;https:&#x2F;&#x2F;espadrine.github.io&#x2F;blog&#x2F;posts&#x2F;chinchilla-s-death.html&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;[4] &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2109.10686.pdf&quot;&gt;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2109.10686.pdf&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;[5] &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;self-supervised.cs.jhu.edu&#x2F;sp2023&#x2F;files&#x2F;17.retrieval-augmentation.pdf&quot;&gt;https:&#x2F;&#x2F;self-supervised.cs.jhu.edu&#x2F;sp2023&#x2F;files&#x2F;17.retrieval-augmentation.pdf&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">LLM Scaling Laws Paper Excerpt - Scaling Laws for Neural Language Models</summary>
         </entry>
 </feed>

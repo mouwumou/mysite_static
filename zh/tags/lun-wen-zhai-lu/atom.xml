@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://website.jingxiqiu.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;website.jingxiqiu.com</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>这是Web Feed，又称为Atom Feed，把现在的网址复制到新闻阅读器即可订阅本站文章。造访「About Feeds」来了解更多资讯。</tabi:about_feeds>
+        <tabi:visit_the_site>造访网站</tabi:visit_the_site>
+        <tabi:recent_posts>近期文章</tabi:recent_posts>
+        <tabi:last_updated_on>更新于 $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>论文摘录</tabi:current_section>
+    </tabi:metadata><title>仇镜溪的博客 - 论文摘录</title>
+    <link href="https://website.jingxiqiu.com/zh/tags/lun-wen-zhai-lu/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://website.jingxiqiu.com/zh/tags/lun-wen-zhai-lu/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    
+    
+    <updated>2024-03-20T00:00:00Z</updated>
+    <id>https://website.jingxiqiu.com/zh/tags/lun-wen-zhai-lu/atom.xml</id><entry xml:lang="zh">
+        <title>LLM Scaling Laws 论文摘录 - Scaling Laws for Neural Language Models</title>
+        <published>2024-03-20T00:00:00+00:00</published>
+        <updated>2024-03-20T00:00:00+00:00</updated>
+        <author>
+            <name>Jingxi Qiu</name>
+        </author>
+        <link rel="alternate" href="https://website.jingxiqiu.com/zh/blog/scaling-law/" type="text/html"/>
+        <id>https://website.jingxiqiu.com/zh/blog/scaling-law/</id>
+        
+            <content type="html">&lt;h1 id=&quot;llm-scaling-laws-lun-wen-zhai-lu-scaling-laws-for-neural-language-models&quot;&gt;LLM Scaling Laws 论文摘录 - Scaling Laws for Neural Language Models&lt;&#x2F;h1&gt;
+&lt;p&gt;type: Post
+status: Published
+date: 2024&#x2F;03&#x2F;20
+tags: AI, LLM, NLP, 论文摘录
+category: 技术分享&lt;&#x2F;p&gt;
+&lt;aside&gt;
+✋ 许多人都认为大模型的性能和模型的结构、大小、训练计算量、数据集大小有关，但是究竟这些因素如何影响大模型的最终性能？了解这些可以帮助更好地决定究竟投入那些资源来训练所需的模型
+&lt;&#x2F;aside&gt;
+&lt;h1 id=&quot;bei-jing-he-nei-rong&quot;&gt;背景和内容&lt;&#x2F;h1&gt;
+&lt;p&gt;OpenAI在2020年发布了《Scaling Laws for Neural Language Models》探讨Scaling Laws（缩放法则），在其中探讨了对于基于Transformerde的大模型的Training Loss与模型参数规模N，数据集大小D，计算量C之间的联系。&lt;&#x2F;p&gt;
+&lt;p&gt;而在2022年四月谷歌DeepMind在文章《Training Compute-Optimal Large Language Models》中重新讨论了Scaling Laws，他们指出当前的大模型都明显缺乏足够的训练，在使用四倍的数据（相较于280B参数Gopher)训练70B的Chinchilla后取得了更好的成绩（SOTA average accuracy of 67.5% on the MMLU benchmark, 7% increasement）。&lt;&#x2F;p&gt;
+&lt;p&gt;然而，在2023年二月由&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;espadrine.github.io&#x2F;&quot;&gt;&lt;em&gt;Thaddée Tyl&lt;&#x2F;em&gt;&lt;&#x2F;a&gt;发布的博客《Chinchilla’s Death》（Chinchilla之死)中，指出，只要训练足够长时间，小模型也能超过大模型。&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;lun-wen&quot;&gt;论文&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;scaling-laws-for-neural-language-models&quot;&gt;Scaling Laws for Neural Language Models&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;zhu-yao-fa-xian&quot;&gt;主要发现&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;模型性能随模型大小N,数据大小D和计算量大小C的增加而提高，和模型形状（深度宽度）与自注意力头弱相关&lt;&#x2F;li&gt;
+&lt;li&gt;在其他因素不受限的情况下，模型大小N、数据大小D、计算量大小C与性能存在幂律关系&lt;&#x2F;li&gt;
+&lt;li&gt;同时扩大模型大小N和数据大小D可以提升模型性能，但是文章研究认为当模型大小增加8倍时，数据大小只需要增加5倍，这种情况下不会受到性能惩罚&lt;&#x2F;li&gt;
+&lt;li&gt;由于训练曲线遵从幂律关系，损失与模型大小无关，因此我们可以大致预测后续训练的损失&lt;&#x2F;li&gt;
+&lt;li&gt;？在迁移到另一个与训练集不同的数据集上时存在一个惩罚（更大的误差），但是这一个惩罚是恒定的，这意味着其他的提升是共通的&lt;&#x2F;li&gt;
+&lt;li&gt;大模型相对于小模型有更高的样本效率（sample-effcient），达到相同的水平只需要使用更少的训练(Figure 2)和更少的数据(Figure 4)&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;website.jingxiqiu.com&#x2F;zh&#x2F;blog&#x2F;scaling-law&#x2F;Untitled.png&quot; alt=&quot;Untitled&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;website.jingxiqiu.com&#x2F;zh&#x2F;blog&#x2F;scaling-law&#x2F;Untitled%201.png&quot; alt=&quot;Untitled&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;收敛是低效的，在计算量大小C固定时，可以在模型没完全收敛之前停止训练来获取最佳性能(Figure 3)。论文给出参考关系为$D\sim C^{0.27}$&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;website.jingxiqiu.com&#x2F;zh&#x2F;blog&#x2F;scaling-law&#x2F;Untitled%202.png&quot; alt=&quot;这张图体现了在相同的计算量大小C的情况下，来自于不同因素究竟有多少贡献。首先是模型大小，其次是数据（通过更大的batch size和减少复用），而Serial Steps（更多的训练次数）帮助并不大&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;这张图体现了在相同的计算量大小C的情况下，来自于不同因素究竟有多少贡献。首先是模型大小，其次是数据（通过更大的batch size和减少复用），而Serial Steps（更多的训练次数）帮助并不大&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;训练的理想batch size应该是训练的幂，并通过梯度噪音尺度（gradient noise scale）继续确定&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;scaling-law-zong-jie&quot;&gt;Scaling Law 总结&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;参数：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;non-embedding parameters $N$&lt;&#x2F;p&gt;
+&lt;p&gt;the dataset size $D$&lt;&#x2F;p&gt;
+&lt;p&gt;optimally allocated compute budget $C_{min}$&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数含义&lt;&#x2F;strong&gt;
+&lt;ul&gt;
+&lt;li&gt;$L$ – the cross entropy loss in nats. Typically it will be averaged over the tokens in a context, but in some cases we report the loss for specific tokens within the context.&lt;&#x2F;li&gt;
+&lt;li&gt;$N$ – the number of model parameters, excluding all vocabulary and positional embeddings&lt;&#x2F;li&gt;
+&lt;li&gt;$C$ $≈ 6NBS$ – an estimate of the total non-embedding training compute, where $B$ is the batch size, and $S$ is the number of training steps (ie parameter updates). We quote numerical values in PF-days, where one $\text{PF-day}= 10^{15} × 24 × 3600 = 8.64 × 10^{19}$ floating point operations.&lt;&#x2F;li&gt;
+&lt;li&gt;$D$ – the dataset size in tokens&lt;&#x2F;li&gt;
+&lt;li&gt;$B_{crit}$ – the critical batch size [MKAT18], defined and discussed in Section 5.1. Training at the critical batch size provides a roughly optimal compromise between time and compute efficiency.&lt;&#x2F;li&gt;
+&lt;li&gt;$C_{min}$ – an estimate of the minimum amount of non-embedding compute to reach a given value of the loss. This is the training compute that would be used if the model were trained at a batch size much less than the critical batch size.&lt;&#x2F;li&gt;
+&lt;li&gt;$S_{min}$ – an estimate of the minimal number of training steps needed to reach a given value of the loss. This is also the number of training steps that would be used if the model were trained at a batch size much greater than the critical batch size.&lt;&#x2F;li&gt;
+&lt;li&gt;$\alpha_X$ – power-law exponents for the scaling of the loss as $L(X) ∝ 1&#x2F;X^{α_X}$ where X can be any of $N, D, C, S, B, C^{min}$.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;在其他两因素不受限的情况下，测试损失可以由以下公式预测：&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;N受限&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;$$
+\begin{equation} L(N)=(N_c&#x2F;N)^{\alpha_N} \end{equation}&lt;br &#x2F;&gt;
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\alpha_N \sim 0.076,N_c \sim 8.8 \times 10^{13} \text{(non-embedding parameters)}
+$$&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;D受限（with early stopping)&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;$$
+\begin{equation} L(D)=(D_c&#x2F;D)^{\alpha_D} \end{equation}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\alpha_D \sim 0.095, D_c \sim 5.4 \times 10^{13}\text{(tokens)}
+$$&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;C受限&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;$$
+\begin{equation}L(C_{min})=(C^{min}&lt;em&gt;c&#x2F;C&lt;&#x2F;em&gt;{min})^{\alpha_{min}} \end{equation}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\alpha_C^{min} \sim 0.050, C^{min}_c \sim 3.1 \times 10^8 \text{(PF-days)}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;公式含义：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;在以上三个公式中,$\alpha_N, \alpha_D, \alpha_C^{min}$给出了当我们提升$N,D,C_{min}$时性能提升的幂次。&lt;&#x2F;p&gt;
+&lt;p&gt;举个例子，当我们将模型的参数量提升到两倍时，模型的损失将会减小，$2_{-\alpha_N}\approx 0.95$，因此损失将会是此前的0.95倍。而$N_C,D_C,C_C^{min}$的准确数字基于字典大小和tokenization因此没有实际意义，只代表数量级关系。&lt;&#x2F;p&gt;
+&lt;p&gt;此外，文章还提到了batch size和loss的关系&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\begin{equation}B_{crit}(L)=\frac{B_*}{L^{1&#x2F;a_B}} \end{equation}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+B_* \sim 2\cdot10^8 \text{tokens}, \alpha_B\sim0.21
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;根据此前公式(1)和公式(2)可以得出，当我们提升模型大小时，我们应相应地增加数据集的数量，可以根据计算得出$D\propto N^{\frac{\alpha_{N}}{\alpha_D}} \sim N^{0.74}$。他们还发现一个结合(1)和(2)的公式来控制N和D的依赖以及控制过拟合：&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\begin{equation}L(N,D)=\left[\left(\frac{N_c}{N}^{\frac{\alpha_N}{\alpha_D}}+\frac{D_c}{D} \right)  \right]^{\alpha_D}\end{equation}
+$$&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;作者推测这个函数也能生成其他生成式任务的最大对数似然&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;训练的曲线也可以由训练step数得出，因此可以求得最佳训练step数&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\begin{equation}L(N,S)=\left(\frac{N_c}{N}\right)^{\alpha{N}}+\left(\frac{S_c}{S_{min}(S)}\right)^{\alpha_S}\end{equation}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$S_c \approx 2.1 \times 10^3,\alpha_S \approx 0.76$
+$S_{min}(S)$ is the minimum possible number of optimization steps (parameter updates) estimated using Equation&lt;&#x2F;p&gt;
+&lt;p&gt;在固定计算量C的情况下，又得出了以下关系公式&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\begin{equation}N \propto C^{\alpha^{min}_C &#x2F;\alpha_N}, B \propto C^{\alpha^{min}_C &#x2F;\alpha_B}, S \propto C^{\alpha^{min}_C &#x2F;\alpha_S}, D = B \cdot S\end{equation}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;此处有&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\begin{equation}\alpha^{min}_C=1&#x2F;(1&#x2F;\alpha_S+1&#x2F;\alpha_B+1&#x2F;\alpha_N)\end{equation}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;可得$N \propto C^{0.73}&lt;em&gt;{min}, B \propto C^{0.24}&lt;&#x2F;em&gt;{min},\text{ and }S \propto C^{0.03}_{min}$，此处提出观点：&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;当计算量C预算提升的时候，应该主要将其用于更大的模型，而不是更多的训练时间和数据大小。&lt;&#x2F;li&gt;
+&lt;li&gt;同时当模型变得更大时，他们变得更加sample efficient。&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;yan-jiu-fang-fa&quot;&gt;研究方法&lt;&#x2F;h3&gt;
+&lt;p&gt;研究在数据集WebText2及其拓展（$2.29\times 10^{10}$ tokens)，tokenize方法为 byte-pair encoding，词汇大小$n_{vocab}=50257$，性能指标（Loss）为在1024个token上下文的中的交叉熵损失。模型使用的是decoder-only的Transformer，同时训练了LSTM和其他类型的Transformer作为比对。&lt;&#x2F;p&gt;
+&lt;p&gt;除特别说明外，模型的训练使用了Adam优化器和$2.5 \times 10^5$步，batch size为512，上下文512 token。由于内存限制，最大的模型使用了Adafactor优化器。&lt;&#x2F;p&gt;
+&lt;p&gt;除特别说明外，训练的学习率是一个3000步的热身和一个cosine decay余弦衰减到零。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;模型的参数计算方法&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;为了计算模型参数和计算量，模型的超参数定义为：&lt;&#x2F;p&gt;
+&lt;p&gt;| $n_{layer}$ | 层数
+number of layers |
+| — | — |
+| $d_{model}$ | 残差流的维度
+dimension of the residual stream |
+| $d_{ff}$ | 前馈层（全连接）的维度
+dimension of the intermediate feed-forward layer |
+| $d_{attn}$ | 注意力输出的维度
+dimension of the attention output |
+| $n_{heads}$ | 每层注意力头数量
+number of attention heads per layer |
+| $n_{ctx}$ | 上下文词元数量，除另说明外为1024
+input context |&lt;&#x2F;p&gt;
+&lt;p&gt;使用$N$代表模型的参数大小，这里定义为除去embedding的参数：&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\begin{aligned} N&amp;amp;\approx 2d_{model}n_{layer}(2d_{attn}+d_{ff}) \ &amp;amp;= 12n_{layer}d^2_{model}\end{aligned}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+d_{attn}=d_{ff}&#x2F;4=d_{model}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;这里省去了embedding层的$n_{vocab}d_{model}$和$n_{ctx}d_{model}$参数，向前传递大概需要计算量$C$如下表示：&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+C_{forward} \approx 2N+2n_{layer}n_{ctx}d_{model}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;website.jingxiqiu.com&#x2F;zh&#x2F;blog&#x2F;scaling-law&#x2F;Untitled%203.png&quot; alt=&quot;Untitled&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;shi-yan-jie-guo&quot;&gt;实验结果&lt;&#x2F;h3&gt;
+&lt;p&gt;实验变量：&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;模型大小（非嵌入参数从768个到15亿个不等）&lt;&#x2F;li&gt;
+&lt;li&gt;数据集大小（从2200万到230亿个token）&lt;&#x2F;li&gt;
+&lt;li&gt;形状（包括深度、宽度、注意力头和前馈维度）&lt;&#x2F;li&gt;
+&lt;li&gt;上下文长度（1024，但也会尝试更短的上下文）&lt;&#x2F;li&gt;
+&lt;li&gt;批量大小（$2^{19}$，但也会改变它以测量临界批量大小）&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;website.jingxiqiu.com&#x2F;zh&#x2F;blog&#x2F;scaling-law&#x2F;Untitled%204.png&quot; alt=&quot;Untitled&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;website.jingxiqiu.com&#x2F;zh&#x2F;blog&#x2F;scaling-law&#x2F;Untitled%205.png&quot; alt=&quot;Untitled&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;结论：&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;在非嵌入模型大小$N$固定的情况下模型的形状对性能的影响很小，调整很大也只影响几个百分点&lt;&#x2F;li&gt;
+&lt;li&gt;如果计算嵌入的参数大小，那模型的性能和层数有较大关联（左图），但是如果去掉嵌入层的参数大小，则除了小于两层的模型，不同层数模型的性能基本在同一个趋势上（右图）。&lt;&#x2F;li&gt;
+&lt;li&gt;在LSTM上同样适用，但是LSTM性能比Transformer差一点&lt;&#x2F;li&gt;
+&lt;li&gt;幂律定理公式成立：&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;$$
+\begin{aligned}
+L(N)      &amp;amp;\approx (N_c&#x2F;N)^{\alpha_N} \
+L(D)      &amp;amp;\approx (D_c&#x2F;D)^{\alpha_D} \
+L(C_{min})&amp;amp;\approx (C_{c}^{min}&#x2F;C_{min})^{\alpha_{min}}
+\end{aligned}
+$$&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;training-compute-optimal-large-language-models&quot;&gt;Training Compute-Optimal Large Language Models&lt;&#x2F;h2&gt;
+&lt;h1 id=&quot;can-kao&quot;&gt;参考&lt;&#x2F;h1&gt;
+&lt;p&gt;[1] &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2001.08361.pdf&quot;&gt;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2001.08361.pdf&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;[2] &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2203.15556.pdf&quot;&gt;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2203.15556.pdf&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;[3] &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;espadrine.github.io&#x2F;blog&#x2F;posts&#x2F;chinchilla-s-death.html&quot;&gt;https:&#x2F;&#x2F;espadrine.github.io&#x2F;blog&#x2F;posts&#x2F;chinchilla-s-death.html&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;[4] &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2109.10686.pdf&quot;&gt;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2109.10686.pdf&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;[5] &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;self-supervised.cs.jhu.edu&#x2F;sp2023&#x2F;files&#x2F;17.retrieval-augmentation.pdf&quot;&gt;https:&#x2F;&#x2F;self-supervised.cs.jhu.edu&#x2F;sp2023&#x2F;files&#x2F;17.retrieval-augmentation.pdf&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">LLM Scaling Laws 论文摘录 - Scaling Laws for Neural Language Models</summary>
+        </entry>
+</feed>

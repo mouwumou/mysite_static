@@ -21,6 +21,10 @@
         <lastmod>2024-09-22</lastmod>
     </url>
     <url>
+        <loc>https://website.jingxiqiu.com/blog/scaling-law/</loc>
+        <lastmod>2024-03-20</lastmod>
+    </url>
+    <url>
         <loc>https://website.jingxiqiu.com/blog/zola-migration/</loc>
         <lastmod>2025-07-01</lastmod>
     </url>
@@ -100,10 +104,16 @@
         <loc>https://website.jingxiqiu.com/tags/package-management/</loc>
     </url>
     <url>
+        <loc>https://website.jingxiqiu.com/tags/paper-excerpt/</loc>
+    </url>
+    <url>
         <loc>https://website.jingxiqiu.com/tags/peft/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/tags/poetry/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/tags/scaling-laws/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/tags/sentiment-analysis/</loc>
@@ -132,6 +142,10 @@
     <url>
         <loc>https://website.jingxiqiu.com/zh/blog/poetry-install-and-usage/</loc>
         <lastmod>2024-09-22</lastmod>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/zh/blog/scaling-law/</loc>
+        <lastmod>2024-03-20</lastmod>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/zh/blog/zola-migration/</loc>
@@ -189,6 +203,9 @@
         <loc>https://website.jingxiqiu.com/zh/tags/llm/</loc>
     </url>
     <url>
+        <loc>https://website.jingxiqiu.com/zh/tags/lun-wen-zhai-lu/</loc>
+    </url>
+    <url>
         <loc>https://website.jingxiqiu.com/zh/tags/meta/</loc>
     </url>
     <url>
@@ -202,6 +219,9 @@
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/zh/tags/qing-gan-fen-xi/</loc>
+    </url>
+    <url>
+        <loc>https://website.jingxiqiu.com/zh/tags/scaling-laws/</loc>
     </url>
     <url>
         <loc>https://website.jingxiqiu.com/zh/tags/shu-ju-fen-xi/</loc>
